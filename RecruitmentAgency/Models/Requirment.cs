@@ -10,5 +10,17 @@ namespace RecruitmentAgency.Models
         public virtual long Id { get; set; }
 
         public virtual string Name { get; set; }
+
+        public virtual ICollection<Vacancy> Vacancies { get; set; }
+
+        public Requirment()
+        {
+            Vacancies = new List<Vacancy>();
+        }
+
+        public Requirment(string requirmentName) : this()
+        {
+            Name = requirmentName;
+        }
     }
 }

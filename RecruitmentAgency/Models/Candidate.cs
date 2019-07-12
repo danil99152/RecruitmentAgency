@@ -9,11 +9,13 @@ namespace RecruitmentAgency.Models
 {
     public class Candidate
     {
-        public virtual long CandidateId { get; set; }
+        public virtual long Id { get; set; }
 
-        [DisplayName("Ваше Фамилия, Имя и Отчество(если имеется)")]
+        [Display(Name = "Логин")]
         [Required]
-        public virtual string FIO { get; set; }
+        public virtual string UserName { get; set; }
+
+        public virtual string Password { get; set; }
 
         [DisplayName("Ваша дата рождения")]
         [Required]
@@ -24,8 +26,7 @@ namespace RecruitmentAgency.Models
         public virtual string PastPlaces { get; set; }
 
         [DisplayName("Загрузите ваше фото")]
-        public virtual Photo Photos { get; set; }
-     //   [DisplayName("В каком формате вы хотите файл")]
-    //    public virtual string Type { get; set; }
+        public virtual string PhotoPath { get; set; }
+
     }
 }

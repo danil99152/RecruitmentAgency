@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
 namespace RecruitmentAgency.Models
 {
-    public class Resume
+    public class Resume : Candidate
     {
         public virtual long ResumeId { get; set; }
 
-        public virtual Candidate FIO { get; set; }
-
-        public virtual Candidate Birthday { get; set; }
-
-        public virtual Candidate PastPlaces { get; set; }
-
-        public virtual Candidate Photo { get; set; }
+        [DisplayName("В каком формате вы хотите файл")]
+        public virtual string Type { get; set; }
     }
 }
