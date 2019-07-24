@@ -1,0 +1,39 @@
+﻿@model NoteApp.Models.Resume
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">@Model.FIO</h4>
+        </div>
+        <div class="modal-body">
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.Birthday)
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.PastPlaces, "ResumePastPlaces")
+                </div>
+            </div>
+            @if (Model.Photo.Path != null && Model.Photo.Name != null)
+            {
+                <tr>
+                    <style>
+                        .round {
+                            border-radius: 100px;
+                            border: 2px solid gray;
+                            box-shadow: 0 0 5px #666;
+                        }
+                    </style>
+                    <a href="@Url.Action("Download", new { filePath = Model.Photo.Path, fileName = Model.Photo.Name })" class="btn btn-xs btn-default"><img src="@Path.Combine($"/Uploaded Files/{ User.Identity.Name}/{ Model.Photo.Name}")" width="90" height="90" alt="image" class="round" /></a>
+                </tr>
+            }
+            @Html.DisplayFor(model => model.Requirments, "ResumeRequirment")
+        </div>
+        <div class="modal-footer">
+            @if (User.IsInRole("Candidate") && (User.Identity.Name.Equals(Model.Author.UserName)))
+            {
+                <a href="@Url.Action("Edit", new { resumeId = Model.Id })" class="btn btn-default">Изменить</a>
+                <a href="@Url.Action("Delete", new { resumeId = Model.Id })" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Удалить</a>
+}
+            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+</div>
+    </div>
